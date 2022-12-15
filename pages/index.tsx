@@ -24,6 +24,7 @@ export default function Home() {
       },
     }
   );
+
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage();
