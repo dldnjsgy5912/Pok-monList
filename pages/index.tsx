@@ -11,15 +11,11 @@ export default function Home() {
   const { isLoading, isError, data, error, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery(
     'posts',
     async ({ pageParam = 1 }) => {
-      console.log('pageParam', pageParam);
-
-      await new Promise((res) => setTimeout(res, 1000));
       const { data } = await axios.get(`https://yts.mx/api/v2/list_movies.json?page=${pageParam}`);
       return data.data;
     },
     {
       getNextPageParam: (lastPage) => {
-        console.log('lastPage', lastPage.page_number);
         return lastPage.page_number + 1;
       },
     }
@@ -30,8 +26,6 @@ export default function Home() {
       fetchNextPage();
     }
   }, [inView]);
-
-  console.log('data', data);
 
   if (isLoading) return <div className="loading">Loading...</div>;
   if (isError) return <div>Error! {JSON.stringify(error)}</div>;
