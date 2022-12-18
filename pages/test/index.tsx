@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import test from '../test/test.module.scss';
+import { css } from '@emotion/react';
 
-const Button = styled.button`
+const Button = css`
   padding: 32px;
   background-color: hotpink;
   font-size: 24px;
@@ -15,5 +16,9 @@ const Button = styled.button`
 `;
 
 export default function index() {
-  return <Button className={test.btn}>test</Button>;
+  return (
+    <button css={Button} className={test.btn}>
+      test
+    </button>
+  );
 }
